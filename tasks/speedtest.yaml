@@ -13,7 +13,7 @@
 
 - name: "Set Bandwidth facts"
   set_fact:
-    download_mbps: "{{ (results.download }}"
-    upload_mbps: "{{ (results.upload }}"
+    download_mbps: "{{ results.download }}"
+    upload_mbps: "{{ results.upload }}"
   when:
     - output.stdout != ''
