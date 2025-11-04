@@ -12,7 +12,7 @@
 - name: "Parse JSON from the stdout of output"
   set_fact:
     results: "{{ output.stdout | from_json }}"
-  no_log: true
+  no_log: false
 
 #- name: "Set Bandwidth facts"
 #  set_fact:
