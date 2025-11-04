@@ -1,7 +1,7 @@
 Ansible Role: libre-speedtest
 =========
 
-Ansible Role used to run a librespeed-cli on a remote machine.
+Ansible Role used to run a librespeed-cli on a remote machine. Built for the usage of the speedtest-cli from the [librespeed](https://github.com/librespeed/speedtest-cli) project.
 
 Requirements
 ------------
