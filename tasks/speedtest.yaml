@@ -9,7 +9,7 @@
 - name: "Parse JSON from the stdout of output"
   set_fact:
     results: "{{ output.stdout | from_json }}"
-  no_log: true
+  no_log: false
 
 - debug:
     msg: "{{ results.download }}"
