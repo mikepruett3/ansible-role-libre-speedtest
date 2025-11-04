@@ -1,0 +1,24 @@
+---
+# Speedtest tasks file for ansible-role-libre-speedtest
+
+- name: "Perform a speedtest"
+  shell: librespeed-cli
+  register: output
+  no_log: false
+
+- debug:
+    var: output
+
+#- name: "Parse JSON from the stdout of output"
+#  set_fact:
+#    results: "{{ output.stdout | from_json }}"
+#  no_log: true
+
+#- name: "Set Bandwidth facts"
+#  set_fact:
+#    download_mbps: "{{ (results.download.bandwidth * 8 / 1000000) | round(2) }}"
+#    upload_mbps: "{{ (results.upload.bandwidth * 8 / 1000000) | round(2) }}"
+#    isp: "{{ results.isp }}"
+#    external_ip: "{{ results.interface.externalIp }}"
+#  when:
+#    - output.stdout != ''

@@ -1,0 +1,66 @@
+---
+# tasks file for ansible-role-libre-speedtest
+
+- name: "Install the EPEL Repository (yum)"
+  yum:
+    name: "epel-release"
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'yum'
+
+- name: "Install the EPEL Repository (dnf)"
+  dnf:
+    name: "epel-release"
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'dnf'
+
+- name: "Install required packages (yum)"
+  yum:
+    name:
+      - tar
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'yum'
+
+- name: "Install required packages (dnf)"
+  dnf:
+    name:
+      - tar
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'dnf'
+
+- name: "Install required packages (apt)"
+  apt:
+    name:
+      - tar
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Download Libre-Speedtest CLI install package locally"
+  get_url:
+    url: "{{ url }}"
+    dest: "/tmp/{{ package }}"
+    mode: '0644'
+  delegate_to: 127.0.0.1
+
+- name: "Copy the Libre-Speedtest CLI install package to {{ inventory_hostname }}"
+  copy:
+    src: "/tmp/{{ package }}"
+    dest: /root/
+    mode: '0644'
+
+- name: "Extract the Libre-Speedtest CLI install package"
+  shell: tar -xzf /root/{{ package }} --directory /bin
+  args:
+    warn: false
+
+- name: "Cleanup left-over files from Libre-Speedtest CLI install package"
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /bin/LICENSE
+    - "/root/{{ package }}"

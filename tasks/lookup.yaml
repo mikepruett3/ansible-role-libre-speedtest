@@ -1,0 +1,50 @@
+---
+# Lookup tasks file for ansible-role-libre-speedtest
+
+- name: "Set fact for architecture for x86_64"
+  set_fact:
+    arch: "amd64"
+  when:
+    - ansible_facts["architecture"] == "x86_64"
+
+- name: "Set fact for architecture for i386"
+  set_fact:
+    arch: "386"
+  when:
+    - ansible_facts["architecture"] == "i386"
+
+- name: "Set fact for architecture for arm64"
+  set_fact:
+    arch: "arm64"
+  when:
+    - ansible_facts["architecture"] == "arm64"
+
+- name: "Collect hyperlinks from the Libre-Speedtest CLI download page"
+  shell: |
+    curl -s {{ base_url }} |
+    grep -Eo 'https?://[^"]+' |
+    grep -i '{{ ansible_facts["system"] }}' |
+    grep -i '{{ arch }}' |
+    sort -u
+  args:
+    warn: false
+  delegate_to: 127.0.0.1
+  register: output
+  failed_when: output.stdout_lines | length > 1
+
+- name: "Set Libre-Speedtest CLI install package facts"
+  set_fact:
+    url: "{{ output.stdout }}"
+    package: "{{ output.stdout.split('/') | last }}"
+
+- name: "Collect stats of Libre-Speedtest CLI executable"
+  stat:
+    path: /bin/librespeed-cli
+  failed_when: false
+  register: output
+
+- name: "Set Install fact"
+  set_fact:
+    install: true
+  when:
+    - not output.stat.exists
