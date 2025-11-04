@@ -10,8 +10,8 @@
     - install is defined
     - install | bool
 
-#- name: "Include tasks from speedtest playbook"
-#  include_tasks: speedtest.yaml
+- name: "Include tasks from speedtest playbook"
+  include_tasks: speedtest.yaml
 
 #- name: "Show Speedtest results"
 #  debug:
