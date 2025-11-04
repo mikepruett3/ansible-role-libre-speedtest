@@ -11,9 +11,12 @@
     results: "{{ output.stdout | from_json }}"
   no_log: true
 
-- name: "Set Bandwidth facts"
-  set_fact:
-    download_mbps: "{{ results.download }}"
-    upload_mbps: "{{ results.upload }}"
-  when:
-    - output.stdout != ''
+- debug:
+    msg: "{{ results.download }}"
+
+#- name: "Set Bandwidth facts"
+#  set_fact:
+#    download_mbps: "{{ results.download }}"
+#    upload_mbps: "{{ results.upload }}"
+#  when:
+#    - output.stdout != ''
