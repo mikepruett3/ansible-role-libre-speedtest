@@ -13,10 +13,8 @@
 - name: "Include tasks from speedtest playbook"
   include_tasks: speedtest.yaml
 
-#- name: "Show Speedtest results"
-#  debug:
-#    msg:
-#      - "Internet Service Provider: {{ isp }}"
-#      - "External IP Address: {{ external_ip }}"
-#      - "Download: {{ download_mbps }} Mbps"
-#      - "Upload: {{ upload_mbps }} Mbps"
+- name: "Show Speedtest results"
+  debug:
+    msg:
+      - "Download: {{ download_mbps }} Mbps"
+      - "Upload: {{ upload_mbps }} Mbps"

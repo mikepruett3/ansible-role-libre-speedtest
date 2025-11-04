@@ -11,14 +11,9 @@
     results: "{{ output.stdout | from_json }}"
   no_log: true
 
-- debug:
-    var: results
-
-#- name: "Set Bandwidth facts"
-#  set_fact:
-#    download_mbps: "{{ (results.download.bandwidth * 8 / 1000000) | round(2) }}"
-#    upload_mbps: "{{ (results.upload.bandwidth * 8 / 1000000) | round(2) }}"
-#    isp: "{{ results.isp }}"
-#    external_ip: "{{ results.interface.externalIp }}"
-#  when:
-#    - output.stdout != ''
+- name: "Set Bandwidth facts"
+  set_fact:
+    download_mbps: "{{ (results.download }}"
+    upload_mbps: "{{ (results.upload }}"
+  when:
+    - output.stdout != ''
