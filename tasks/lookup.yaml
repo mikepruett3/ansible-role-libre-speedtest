@@ -21,7 +21,7 @@
 
 - name: "Collect hyperlinks from the Libre-Speedtest CLI download page"
   shell: |
-    curl -s {{ base_url }} |
+    curl -s {{ url }} |
     grep -Eo 'https?://[^"]+' |
     grep -i '{{ ansible_facts["system"] }}' |
     grep -i '{{ arch }}' |
@@ -34,7 +34,7 @@
 
 - name: "Set Libre-Speedtest CLI install package facts"
   set_fact:
-    url: "{{ output.stdout }}"
+    download_url: "{{ output.stdout }}"
     package: "{{ output.stdout.split('/') | last }}"
 
 - name: "Collect stats of Libre-Speedtest CLI executable"

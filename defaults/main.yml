@@ -1,7 +1,6 @@
 ---
 # defaults file for ansible-role-libre-speedtest
 
-url: "https://api.github.com/repos/librespeed/speedtest-cli/releases/tag"
+base_url: "https://api.github.com/repos/librespeed/speedtest-cli/releases/tag"
 current_version: "v1.0.12"
-base_url: "{{ url }}/{{ current_version }}"
-#base_url: "https://api.github.com/repos/librespeed/speedtest-cli/releases/latest"
+url: "{{ base_url }}/{{ current_version }}"

@@ -41,7 +41,7 @@
 
 - name: "Download Libre-Speedtest CLI install package locally"
   get_url:
-    url: "{{ url }}"
+    url: "{{ download_url }}"
     dest: "/tmp/{{ package }}"
     mode: '0644'
   delegate_to: 127.0.0.1
