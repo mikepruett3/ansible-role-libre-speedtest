@@ -12,7 +12,7 @@
   no_log: false
 
 - debug:
-    msg: "{{ results.download }}"
+    var: results
 
 #- name: "Set Bandwidth facts"
 #  set_fact:
