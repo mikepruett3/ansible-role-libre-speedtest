@@ -14,9 +14,7 @@ Role Variables
 Available variables are listed below, along with default values (see ```defaults/main.yml```):
 
 ``` yaml
-base_url: "https://api.github.com/repos/librespeed/speedtest-cli/releases/tag"
-current_version: "v1.0.12"
-url: "{{ base_url }}/{{ current_version }}"
+url: "https://api.github.com/repos/librespeed/speedtest-cli/releases/latest"
 ```
 
 Role variables can be stored with the hosts.yaml file, or in the main variables file.
