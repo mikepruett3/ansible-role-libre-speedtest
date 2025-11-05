@@ -1,44 +1,6 @@
 ---
 # tasks file for ansible-role-libre-speedtest
 
-- name: "Install the EPEL Repository (yum)"
-  yum:
-    name: "epel-release"
-    state: present
-  when:
-    - ansible_facts['pkg_mgr'] == 'yum'
-
-- name: "Install the EPEL Repository (dnf)"
-  dnf:
-    name: "epel-release"
-    state: present
-  when:
-    - ansible_facts['pkg_mgr'] == 'dnf'
-
-- name: "Install required packages (yum)"
-  yum:
-    name:
-      - tar
-    state: present
-  when:
-    - ansible_facts['pkg_mgr'] == 'yum'
-
-- name: "Install required packages (dnf)"
-  dnf:
-    name:
-      - tar
-    state: present
-  when:
-    - ansible_facts['pkg_mgr'] == 'dnf'
-
-- name: "Install required packages (apt)"
-  apt:
-    name:
-      - tar
-    state: present
-  when:
-    - ansible_facts['pkg_mgr'] == 'apt'
-
 - name: "Download Libre-Speedtest CLI install package locally"
   get_url:
     url: "{{ download_url }}"

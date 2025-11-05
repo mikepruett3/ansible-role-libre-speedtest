@@ -4,6 +4,9 @@
 - name: "Include tasks from lookup playbook"
   include_tasks: lookup.yaml
 
+- name: "Include tasks from prerequisites playbook"
+  include_tasks: prerequisites.yaml
+
 - name: "Include tasks from install playbook"
   include_tasks: install.yaml
   when:
