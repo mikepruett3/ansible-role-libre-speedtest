@@ -4,7 +4,7 @@
 - name: "Perform a speedtest"
   shell: librespeed-cli --json
   register: output
-  no_log: true
+  no_log: false
 
 - name: "Parse JSON from the stdout of output"
   set_fact:
